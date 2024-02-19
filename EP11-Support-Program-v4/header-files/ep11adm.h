@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
  * This EP11 header file is distributed under the following license
  *
- * Copyright 2022 IBM Corp. All Rights Reserved
+ * Copyright 2023 IBM Corp. All Rights Reserved
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -228,7 +228,7 @@ static const struct {
 		  XCP_CPB_DERIVE                                          },
 	},
 	{ XCP_ADMS_FIPS2021, "fips2021",
-		15,
+		17,
 		{ XCP_CPB_ALG_NFIPS2011,      XCP_CPB_KEYSZ_80BIT,
 		  XCP_CPB_KEYSZ_RSA65536,
 		  XCP_CPB_ALG_NFIPS2021,      XCP_CPB_ALG_EC_25519,
@@ -236,13 +236,15 @@ static const struct {
 		  XCP_CPB_ECDSA_OTHER,        XCP_CPB_ALLOW_NONSESSION,
 		  XCP_CPB_ALG_EC_SECGCRV,     XCP_CPB_ALG_EC_BPOOLCRV,
 		  XCP_CPB_COMPAT_LEGACY_SHA3, XCP_CPB_DSA_PARAMETER_GEN,
-		  XCP_CPB_WRAP_ASYMM,         XCP_CPB_UNWRAP_ASYMM
+		  XCP_CPB_WRAP_ASYMM,         XCP_CPB_UNWRAP_ASYMM,
+		  XCP_CPB_ALLOW_LOGIN_PRE_F2021,
+		  XCP_CPB_ALG_RSA_OAEP
 		},
 		0,
 		{                                                         },
 	},
 	{ XCP_ADMS_FIPS2024, "fips2024",
-		16,
+		18,
 		{ XCP_CPB_ALG_NFIPS2011,      XCP_CPB_KEYSZ_80BIT,
 		  XCP_CPB_KEYSZ_RSA65536,
 		  XCP_CPB_ALG_NFIPS2021,      XCP_CPB_ALG_EC_25519,
@@ -251,11 +253,12 @@ static const struct {
 		  XCP_CPB_ALG_EC_SECGCRV,     XCP_CPB_ALG_EC_BPOOLCRV,
 		  XCP_CPB_ALG_NFIPS2024,      XCP_CPB_COMPAT_LEGACY_SHA3,
 		  XCP_CPB_DSA_PARAMETER_GEN,  XCP_CPB_WRAP_ASYMM,
-		  XCP_CPB_UNWRAP_ASYMM
+		  XCP_CPB_UNWRAP_ASYMM,       XCP_CPB_ALLOW_LOGIN_PRE_F2021,
+		  XCP_CPB_ALG_RSA_OAEP
 		},
 		0,
 		{                                                         },
-	// XCP_ADMS_ADM_FIPS2021 is not reported here as it is not set with
+	// XCP_ADMC_ADM_FIPS2021 is not reported here as it is not set with
 	// control points
 	}
 } ;
@@ -1532,3 +1535,4 @@ long xcpa_kps_retrieve_rcptinfo(struct Recipient_info *rcpti,
 uint64_t get_dom_compl(target_t target);
 
 #endif /* !defined(__xcpadm_h__) */
+
